@@ -13,14 +13,14 @@ Examples:
 
 ```rust
 // Derives `.x` and `.y` attributes
-#[derive(Variable)]
+#[derive(Debug, Variable)]
 struct Point {
     x: u32,
     y: u32,
 }
 
 // Forwards all methods to the internal type
-#[derive(Variable)]
+#[derive(Debug, Variable)]
 struct NewType(SomeVarType);
 ```
 
