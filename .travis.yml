@@ -1,0 +1,34 @@
+sudo: false
+dist: trusty
+language: rust
+
+cache:
+- cargo
+
+before_cache:
+- rm -r $TRAVIS_BUILD_DIR/target/debug
+
+jobs:
+  include:
+  - os: linux
+    rust: stable
+  - os: linux
+    rust: beta
+  - os: linux
+    rust: nightly
+
+  # deploy
+  - stage: publish
+    os: linux
+    rust: stable
+    env:
+    # CARGO_TOKEN
+    - secure: "OuueutXYdaF452GZweUvqhtqMxNqkqiBoXWP9/490wPGwJo6GtmUymb23aUSucbjOXn0n/UOsTuEnngBoYqhC38zbEuHF7WTBaFDXn1l4JIsi43b/JE1b23VS1nGmasGzgS0jBJCDU+5D9upBIeDuS34QiowA6HAhMGZyZZf5+q7nQ/3Zjsv4fR8xwzphQkmgpadBcdQNIQsyiYsgGcCyaBbUYRigFfq38/zaAPw2oSZHIt8evNrWPiz/rFEkBqtBAAUzSVu+3z6e0hDOazu17jwQUXK5pM7kdjV6nR6BDqhtX7B49k1yEWH/pa/dsy8bhtvqn50P9hjaHJDWutVcp2FWhKlvmer4AHPfdrmZ986NzOcCNeWrsi96ASgjSjlc9ojpmEB66QssMe2iNuqL5BpgwPbHbboO5MgZMZshL/iC8nc3YSKKPpkq+f+kLlLeinJEWlctGgbCZOtXRoKNAmwybQ2ys65U0x7naNi9aYcVB625A4kHIFSSUth9+nbTg67LdJibe73tQuyrhEMGr3Qr92OiOMkhuL3dnL2g8sEbMdiPVDST12rYvohxa9NMQqfH6p37LYy26E3aG9YD1/m+XrFY1io18SPUPYWpnpuXCgjpYsSYMIEQq6nmtpUes8MTkw5BM+NT6KS1YrbT7Pia54lB3b69jeHaCoVR0A="
+    install: true
+    script: true
+
+    deploy:
+    - provider: script
+      script: 'cargo publish --verbose --token=$CARGO_TOKEN'
+      on:
+        tags: true
