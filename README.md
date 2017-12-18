@@ -15,8 +15,8 @@ Examples:
 // Derives `.x` and `.y` attributes
 #[derive(Variable)]
 struct Point {
-    x: usize,
-    y: usize,
+    x: u32,
+    y: u32,
 }
 
 // Forwards all methods to the internal type
