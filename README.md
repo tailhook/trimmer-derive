@@ -1,8 +1,7 @@
 Trimmer Derive
 ==============
 
-:Status: Beta
-
+[Trimmer](https://crates.io/crates/trimmer/) |
 [Docs](https://docs.rs/trimmer_derive/) |
 [Github](https://github.com/tailhook/trimmer-derive) |
 [Crate](https://crates.io/crates/trimmer_derive)
